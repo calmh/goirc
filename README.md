@@ -1,11 +1,16 @@
 GoIRC Client Framework
 ======================
 
+## Forked
+
+This is a fork of `github.com/fluffle/goirc`. You should use that
+instead.
+
 ### Acquiring and Building
 
 Pretty simple, really:
 
-	go get github.com/fluffle/goirc/client
+	go get github.com/calmh/goirc/client
 
 There is some example code that demonstrates usage of the library in `client.go`. This will connect to freenode and join `#go-nuts` by default, so be careful ;-)
 
@@ -16,7 +21,7 @@ old `go1` API.
 
 Synopsis:
 
-	import irc "github.com/fluffle/goirc/client"
+	import irc "github.com/calmh/goirc/client"
 
 	func main() {
 		// Creating a simple IRC client is simple.

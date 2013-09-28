@@ -77,7 +77,6 @@ func (line *Line) Public() bool {
 	return false
 }
 
-
 // parseLine() creates a Line from an incoming message from the IRC server.
 func parseLine(s string) *Line {
 	line := &Line{Raw: s}

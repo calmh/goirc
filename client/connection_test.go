@@ -2,7 +2,7 @@ package client
 
 import (
 	"code.google.com/p/gomock/gomock"
-	"github.com/fluffle/goirc/state"
+	"github.com/calmh/goirc/state"
 	"strings"
 	"testing"
 	"time"
@@ -86,7 +86,7 @@ func TestClientAndStateTracking(t *testing.T) {
 		t.Errorf("Conn.cfg.Me not correctly initialised.")
 	}
 	// Check that the internal handlers are correctly set up
-	for k, _ := range intHandlers {
+	for k := range intHandlers {
 		if _, ok := c.handlers.set[strings.ToLower(k)]; !ok {
 			t.Errorf("Missing internal handler for '%s'.", k)
 		}
@@ -94,7 +94,7 @@ func TestClientAndStateTracking(t *testing.T) {
 
 	// Now enable the state tracking code and check its handlers
 	c.EnableStateTracking()
-	for k, _ := range stHandlers {
+	for k := range stHandlers {
 		if _, ok := c.handlers.set[strings.ToLower(k)]; !ok {
 			t.Errorf("Missing state handler for '%s'.", k)
 		}
@@ -123,7 +123,7 @@ func TestClientAndStateTracking(t *testing.T) {
 	}
 
 	// Finally, check state tracking handlers were all removed correctly
-	for k, _ := range stHandlers {
+	for k := range stHandlers {
 		if _, ok := c.handlers.set[strings.ToLower(k)]; ok && k != "NICK" {
 			// A bit leaky, because intHandlers adds a NICK handler.
 			t.Errorf("State handler for '%s' not removed correctly.", k)

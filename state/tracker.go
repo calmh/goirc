@@ -81,7 +81,7 @@ func (st *stateTracker) ReNick(old, neu string) {
 			nk.Nick = neu
 			delete(st.nicks, old)
 			st.nicks[neu] = nk
-			for ch, _ := range nk.chans {
+			for ch := range nk.chans {
 				// We also need to update the lookup maps of all the channels
 				// the nick is on, to keep things in sync.
 				delete(ch.lookup, old)
@@ -106,7 +106,7 @@ func (st *stateTracker) delNick(nk *Nick) {
 		return
 	}
 	delete(st.nicks, nk.Nick)
-	for ch, _ := range nk.chans {
+	for ch := range nk.chans {
 		nk.delChannel(ch)
 		ch.delNick(nk)
 	}
@@ -139,7 +139,7 @@ func (st *stateTracker) DelChannel(c string) {
 
 func (st *stateTracker) delChannel(ch *Channel) {
 	delete(st.chans, ch.Name)
-	for nk, _ := range ch.nicks {
+	for nk := range ch.nicks {
 		ch.delNick(nk)
 		nk.delChannel(ch)
 		if len(nk.chans) == 0 && nk != st.me {
